@@ -1,0 +1,47 @@
+{
+	routes: [
+		{
+			name,
+			translate,
+			edges: [
+				[
+					edge,
+					edge,
+				],
+				[
+					edge,
+					edge,
+				]
+			]
+		},{
+			name,
+			translate,
+			edges: [
+				[
+					edge,
+					edge,
+				],
+				[
+					edge,
+					edge,
+				]
+			]
+		}
+	],
+	stations: [
+		{
+			name,
+			routes: [
+				route,
+				route
+			]
+		},
+		{
+			name,
+			routes: [
+				route,
+				route
+			]
+		}
+	]
+}
