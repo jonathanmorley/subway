@@ -1,0 +1,59 @@
+{
+	"routes" : [
+		{
+			"name" : "Graduate",
+			"color" : "grey",
+			"translate" : "t20,80",
+			"edges" : [
+				{
+					"direction" : 0,
+					"length" : 10
+				}, {
+					"direction" : 2,
+					"length" : 80
+				}, {
+					"direction" : 2,
+					"length" : 10
+				}, {
+					"direction" : 1,
+					"length" : 10
+				}, {
+					"follow" : 1,
+					"direction" : 0,
+					"length" : 10
+				}, {
+					"direction" : 1,
+					"length" : 10
+				}
+			]
+		}, {
+			"name" : "Graduate2",
+			"color" : "black",
+			"translate" : "t20,40",
+			"edges" : [
+				{
+					"direction" : 0,
+					"length" : 10
+				}, {
+					"direction" : 2,
+					"length" : 80
+				}, {
+					"direction" : 2,
+					"length" : 10
+				}, {
+					"direction" : 1,
+					"length" : 10
+				}, {
+					"follow" : 1,
+					"direction" : 0,
+					"length" : 10
+				}, {
+					"direction" : 2,
+					"length" : 10
+				}
+			]
+		}
+	],
+	"stations" : [
+	]
+}

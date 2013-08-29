@@ -1,0 +1,681 @@
+[
+	{
+		"name" : "Graduate",
+		"color" : "grey",
+		"radiusLevel" : 0,
+		"paths" : [
+			[
+				{
+					"x" : 750,
+					"y" : 900
+				}, {
+					"type" : "station",
+					"dir" : 6
+				}, {
+					"type" : "station",
+					"dir" : 2
+				}, {
+					"type" : "route",
+					"dir" : 0,
+					"len" : 50
+				}, {
+					"type" : "connection",
+					"dir" : 3,
+					"text" : "Graduate\nTrainee",
+					"info" : "TEST INFO HERE"
+				}, {
+					"type" : "route",
+					"dir" : 0,
+					"len" : 35
+				}, {
+					"type" : "route",
+					"dir" : 0,
+					"len" : 35
+				}, {
+					"type" : "route",
+					"dir" : 2,
+					"len" : 131
+				}, {
+					"type" : "connection",
+					"dir" : 4,
+					"text" : "Entry Level\nProject Manager",
+					"others" : [
+						"Project Management"
+					]
+				}, {
+					"type" : "route",
+					"dir" : 2,
+					"len" : 250
+				}, {
+					"type" : "connection",
+					"dir" : 4,
+					"text" : "Entry Level\nBusiness Analyst",
+					"others" : [
+						"Business Analysis"
+					]
+				}, {
+					"type" : "route",
+					"dir" : 2,
+					"len" : 249
+				}, {
+					"type" : "connection",
+					"dir" : 4,
+					"text" : "Junior\nDevelopment Lead",
+					"others" : [
+						"Software Development"
+					]
+				}, {
+					"type" : "route",
+					"dir" : 2,
+					"len" : 250
+				}, {
+					"type" : "route",
+					"dir" : 1,
+					"len" : 100
+				}, {
+					"type" : "connection",
+					"dir" : 3,
+					"text" : "Junior\nQA Lead",
+					"others" : [
+						"QA"
+					]
+				}
+			]
+		]
+	}, {
+		"name" : "QA",
+		"color" : "brown",
+		"radiusLevel" : 0,
+		"paths" : [
+			[
+				{
+					"x" : 1735,
+					"y" : 695
+				}, {
+					"type" : "connection",
+					"dir" : 3,
+					"text" : "Junior\nQA Lead"
+				}, {
+					"type" : "route",
+					"dir" : 1,
+					"len" : 100
+				}, {
+					"type" : "route",
+					"dir" : 0,
+					"len" : 150
+				}, {
+					"type" : "station",
+					"dir" : 2,
+					"text" : "QA Lead"
+				}, {
+					"type" : "route",
+					"dir" : 0,
+					"len" : 200
+				}, {
+					"type" : "station",
+					"dir" : 2,
+					"text" : "Senior\nQA Lead"
+				}, {
+					"type" : "route",
+					"dir" : 0,
+					"len" : 200
+				}, {
+					"type" : "connection",
+					"dir" : 2,
+					"text" : "Head of QA"
+				}
+			]
+		]
+	}, {
+		"name" : "Business Analysis",
+		"color" : "red",
+		"radiusLevel" : 0,
+		"paths" : [
+			[
+				{
+					"x" : 1151,
+					"y" : 780
+				}, {
+					"type" : "route",
+					"dir" : 0,
+					"len" : 210
+				}, {
+					"type" : "route",
+					"dir" : 1,
+					"len" : 50
+				}, {
+					"type" : "route",
+					"dir" : 0,
+					"len" : 70
+				}, {
+					"type" : "connection",
+					"dir" : 1,
+					"x" : 10,
+					"y" : -40,
+					"text" : "Business\nAnalyst",
+					"others" : [
+						"Project Management",
+						"Software Development"
+					]
+				}, {
+					"type" : "route",
+					"dir" : 0,
+					"len" : 100
+				}, {
+					"type" : "route",
+					"dir" : 1,
+					"len" : 100
+				}, {
+					"type" : "route",
+					"dir" : 0,
+					"len" : 30
+				}, {
+					"type" : "station",
+					"dir" : 6,
+					"text" : "Senior\nBusiness Analyst"
+				}, {
+					"type" : "route",
+					"dir" : 0,
+					"len" : 150
+				}, {
+					"type" : "connection",
+					"dir" : 6,
+					"text" : "Principle\nProduct Consultant"
+				}
+			], [{
+					"x" : 1200,
+					"y" : 431
+				}, {
+					"type" : "route",
+					"dir" : 0,
+					"len" : 100
+				}, {
+					"type" : "route",
+					"dir" : 7,
+					"len" : 160
+				}, {
+					"type" : "station",
+					"dir" : 5,
+					"text" : "Business Analyst\nManager"
+				}, {
+					"type" : "route",
+					"dir" : 7,
+					"len" : 210
+				}, {
+					"type" : "connection",
+					"dir" : 6,
+					"text" : "Senior Business Analyst\nManager"
+				}
+			]
+		],
+		"links" : [
+			{
+				"x" : 1200,
+				"y" : 431,
+				"dir" : 2,
+				"len" : 50,
+				"others" : [
+					"Project Management",
+					"Software Development"
+				]
+			}, {
+				"x" : 1200,
+				"y" : 431,
+				"dir" : 6,
+				"len" : 50,
+				"others" : [
+					"Project Management",
+					"Software Development"
+				]
+			}
+		]
+	}, {
+		"name" : "Project Management",
+		"color" : "darkblue",
+		"radiusLevel" : 0,
+		"paths" : [
+			[
+				{
+					"x" : 901,
+					"y" : 780
+				}, {
+					"type" : "route",
+					"dir" : 1,
+					"len" : 494
+				}, {
+					"type" : "connection",
+					"dir" : 2,
+					"text" : "Project\nManager",
+					"others" : [
+						"Business Analysis",
+						"Software Development"
+					]
+				}, {
+					"type" : "route",
+					"dir" : 1,
+					"len" : 100
+				}, {
+					"type" : "route",
+					"dir" : 2,
+					"len" : 250
+				}, {
+					"type" : "route",
+					"dir" : 1,
+					"len" : 100
+				}, {
+					"type" : "route",
+					"dir" : 0,
+					"len" : 30
+				}, {
+					"type" : "station",
+					"dir" : 6,
+					"text" : "Senior\nProject Manager"
+				}, {
+					"type" : "route",
+					"dir" : 0,
+					"len" : 170
+				}, {
+					"type" : "connection",
+					"dir" : 6,
+					"text" : "Programme\nManager"
+				}
+			], [
+				{
+					"x" : 1250,
+					"y" : 431
+				}, {
+					"type" : "route",
+					"dir" : 1,
+					"len" : 100
+				}, {
+					"type" : "route",
+					"dir" : 2,
+					"len" : 150
+				}, {
+					"type" : "route",
+					"dir" : 0,
+					"len" : 280
+				}, {
+					"type" : "connection",
+					"dir" : 6,
+					"text" : "Portfolio\nLead"
+				}
+			]
+		]
+	}, {
+		"name" : "Software Development",
+		"color" : "black",
+		"radiusLevel" : 0,
+		"paths" : [
+			[
+				{
+					"x" : 1400,
+					"y" : 780
+				}, {
+					"type" : "route",
+					"dir" : 0,
+					"len" : 260
+				}, {
+					"type" : "route",
+					"dir" : 6,
+					"len" : 230
+				}, {
+					"type" : "route",
+					"dir" : 0,
+					"len" : 69
+				}, {
+					"type" : "connection",
+					"dir" : 6,
+					"text" : "Development\nLead",
+					"others" : [
+						"Project Management",
+						"Business Analysis"
+					]
+				}, {
+					"type" : "route",
+					"dir" : 0,
+					"len" : 100
+				}, {
+					"type" : "route",
+					"dir" : 6,
+					"len" : 650
+				}, {
+					"type" : "route",
+					"dir" : 0,
+					"len" : 100
+				}, {
+					"type" : "station",
+					"dir" : 2,
+					"text" : "Software Development\nTeam Leader"
+				}, {
+					"type" : "route",
+					"dir" : 0,
+					"len" : 150
+				}, {
+					"type" : "connection",
+					"dir" : 2,
+					"text" : "Software Development\nManager"
+				}
+			], [
+				{
+					"x" : 1150,
+					"y" : 431
+				}, {
+					"type" : "route",
+					"dir" : 0,
+					"len" : 100
+				}, {
+					"type" : "route",
+					"dir" : 6,
+					"len" : 350
+				}, {
+					"type" : "route",
+					"dir" : 0,
+					"len" : 100
+				}, {
+					"type" : "connection",
+					"dir" : 0,
+					"len" : 50,
+					"text" : "Senior\nDevelopment Lead"
+				}
+			]
+		]
+	}, {
+		"name" : "Architecture",
+		"color" : "fuchsia",
+		"radiusLevel" : 0,
+		"paths" : [
+			[
+				{
+					"x" : 1550,
+					"y" : 660
+				}, {
+					"type" : "connection",
+					"dir" : 0,
+					"text" : "Architect"
+				}, {
+					"type" : "route",
+					"dir" : 6,
+					"len" : 650
+				}, {
+					"type" : "route",
+					"dir" : 7,
+					"len" : 305
+				}, {
+					"type" : "route",
+					"dir" : 6,
+					"len" : 130
+				}, {
+					"type" : "station",
+					"dir" : 4,
+					"text" : "Senior\nArchitect"
+				}, {
+					"type" : "route",
+					"dir" : 6,
+					"len" : 250
+				}, {
+					"type" : "route",
+					"dir" : 7,
+					"len" : 100
+				}, {
+					"type" : "route",
+					"dir" : 0,
+					"len" : 140
+				}, {
+					"type" : "connection",
+					"dir" : 0,
+					"text" : "Lead\nArchitect"
+				}
+			]
+		]
+	}, {
+		"name" : "Miscellaneous",
+		"color" : "lightblue",
+		"radiusLevel" : 0,
+		"paths" : [
+			[
+				{
+					"x" : 1500,
+					"y" : 430
+				}, {
+					"type" : "connection",
+					"dir" : 2,
+					"text" : "UX Analyst"
+				}
+			],
+			[
+				{
+					"x" : 1000,
+					"y" : 500
+				}, {
+					"type" : "connection",
+					"dir" : 6,
+					"text" : "Operations\nManager"
+				}
+			]
+		]
+	}, {
+		"name" : "Delivery",
+		"color" : "green",
+		"radiusLevel" : 0,
+		"paths" : [
+			[
+				{
+					"x" : 550,
+					"y" : 780
+				}, {
+					"type" : "connection",
+					"dir" : 4,
+					"text" : "GVAP\nOperations Analyst"
+				}, {
+					"type" : "route",
+					"dir" : 6,
+					"len" : 150
+				}, {
+					"type" : "station",
+					"dir" : 4,
+					"text" : "Product Delivery\nAnalyst"
+				}, {
+					"type" : "route",
+					"dir" : 6,
+					"len" : 130
+				}, {
+					"type" : "route",
+					"dir" : 0,
+					"len" : 240
+				}, {
+					"type" : "route",
+					"dir" : 1,
+					"len" : 120
+				}, {
+					"type" : "route",
+					"dir" : 2,
+					"len" : 160
+				}, {
+					"type" : "station",
+					"dir" : 0,
+					"text" : "Delivery Manager\nProduct Delivery"
+				}, {
+					"type" : "route",
+					"dir" : 2,
+					"len" : 180
+				}, {
+					"type" : "station",
+					"dir" : 0,
+					"text" : "Delivery Manager\nDTL"
+				}, {
+					"type" : "route",
+					"dir" : 2,
+					"len" : 160
+				}, {
+					"type" : "connection",
+					"dir" : 0,
+					"text" : "Delivery Manager\nCDG"
+				}
+			]
+		]
+	}, {
+		"name" : "Support",
+		"color" : "purple",
+		"radiusLevel" : 0,
+		"paths" : [
+			[
+				{
+					"x" : 200,
+					"y" : 780
+				}, {
+					"type" : "connection",
+					"dir" : 4,
+					"text" : "Junior\nSupport Analyst"
+				}, {
+					"type" : "route",
+					"dir" : 1,
+					"len" : 300
+				}, {
+					"type" : "route",
+					"dir" : 0,
+					"len" : 30
+				}, {
+					"type" : "station",
+					"dir" : 6,
+					"text" : "Support\nAnalyst"
+				}, {
+					"type" : "route",
+					"dir" : 0,
+					"len" : 140
+				}, {
+					"type" : "connection",
+					"dir" : 6,
+					"text" : "Senior\nSupport Analyst"
+				}, {
+					"type" : "route",
+					"dir" : 0,
+					"len" : 200
+				}, {
+					"type" : "station",
+					"dir" : 6,
+					"text" : "Support\nTeam Leader"
+				}, {
+					"type" : "route",
+					"dir" : 0,
+					"len" : 120
+				}, {
+					"type" : "connection",
+					"dir" : 6,
+					"text" : "Support\nManager"
+				}
+			],
+			[
+				{
+					"x" : 412,
+					"y" : 378
+				}, {
+					"type" : "route",
+					"dir" : 0,
+					"len" : 100
+				}, {
+					"type" : "route",
+					"dir" : 6,
+					"len" : 300
+				}, {
+					"type" : "route",
+					"dir" : 0,
+					"len" : 100
+				}, {
+					"type" : "connection",
+					"dir" : 0,
+					"text" : "Database\nTechnical Lead"
+				}
+			]
+		]
+	}, {
+		"name" : "PMO",
+		"color" : "gold",
+		"radiusLevel" : 0,
+		"paths" : [
+			[
+				{
+					"x" : 700,
+					"y" : 650
+				}, {
+					"type" : "connection",
+					"dir" : 4,
+					"text" : "PMO\nCo-ordinator"
+				}, {
+					"type" : "route",
+					"dir" : 6,
+					"len" : 600
+				}, {
+					"type" : "route",
+					"dir" : 0,
+					"len" : 30
+				}, {
+					"type" : "route",
+					"dir" : 0,
+					"len" : 140
+				}, {
+					"type" : "connection",
+					"dir" : 0,
+					"text" : "PMO\nManager"
+				}
+			]
+		]
+	}, {
+		"name" : "Leadership",
+		"color" : "blue",
+		"radiusLevel" : 0,
+		"paths" : [
+			[
+				{
+					"x" : 1000,
+					"y" : 900
+				}, {
+					"type" : "connection",
+					"dir" : 4,
+					"text" : "Head of\nArchitecture"
+				}, {
+					"type" : "route",
+					"dir" : 2,
+					"len" : 170
+				}, {
+					"type" : "connection",
+					"dir" : 4,
+					"text" : "Software Development\nDirector"
+				}, {
+					"type" : "route",
+					"dir" : 2,
+					"len" : 170
+				}, {
+					"type" : "connection",
+					"dir" : 4,
+					"text" : "Head of\nBusiness Analysis"
+				}, {
+					"type" : "route",
+					"dir" : 2,
+					"len" : 170
+				}, {
+					"type" : "connection",
+					"dir" : 4,
+					"text" : "Head of\nDelivery Assurance"
+				}, {
+					"type" : "route",
+					"dir" : 2,
+					"len" : 170
+				}, {
+					"type" : "connection",
+					"dir" : 4,
+					"len" : 50,
+					"text" : "Head of\nClient Delivery\nand Support"
+				}, {
+					"type" : "route",
+					"dir" : 2,
+					"len" : 170
+				}, {
+					"type" : "connection",
+					"dir" : 4,
+					"text" : "Portfolio\nManager"
+				}
+			]
+		]
+	}
+]

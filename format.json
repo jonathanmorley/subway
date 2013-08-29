@@ -2,35 +2,40 @@
 	routes: [
 		{
 			name,
+			color,
 			translate,
 			edges: [
-				[
-					edge,
-					edge,
-				],
-				[
-					edge,
-					edge,
-				]
+				{
+					direction,
+					length,
+				},
+				{
+					[follow],
+					direction,
+					length,
+				}
 			]
 		},{
 			name,
+			color,
 			translate,
 			edges: [
-				[
-					edge,
-					edge,
-				],
-				[
-					edge,
-					edge,
-				]
+				{
+					direction,
+					length,
+				},
+				{
+					[follow],
+					direction,
+					length,
+				}
 			]
 		}
 	],
 	stations: [
 		{
 			name,
+			position,
 			routes: [
 				route,
 				route
@@ -38,6 +43,7 @@
 		},
 		{
 			name,
+			position,
 			routes: [
 				route,
 				route
