@@ -47,8 +47,14 @@ drawGridLines = (paper) ->
 	paper.setFinish().forEach((elem) -> elem.clone().transform(Raphael.format("t{0},0", cell_length*map.grid.columns)))
 	
 drawRoute = (paper, route) ->
-	console.log(getStartEndPoint(route.edges))
-	paper.path(Raphael.fullfill("M{start.x},{start.y}L{end.x},{end.y}", edge)).transform(Raphael.format("t{0},{1}", route.translate.x * map.multiplier, route.translate.y * map.multiplier)).attr("stroke-width", map.multiplier*10) for edge in getStartEndPoint(route.edges)
+	route.translate[key] = value * map.multiplier for key,value of route.translate
+	drawSolidEdge(paper, edge)
+		.transform(Raphael.fullfill("t{x},{y}", route.translate)) for edge in getStartEndPoint(route.edges)
+
+drawSolidEdge = (paper, edge) ->
+	paper
+		.path(Raphael.fullfill("M{start.x},{start.y}L{end.x},{end.y}", edge))
+		.attr("stroke-width", map.multiplier*10)
 	
 drawStation = (paper, station) ->
 	console.log(station)
@@ -62,7 +68,7 @@ getStartEndPoint = (edges) ->
 		start: 
 			x: Math.round if edge.follow then current.x = _results[edge.follow].end.x else current.x
 			y: Math.round if edge.follow then current.y = _results[edge.follow].end.y else current.y
-			curve: edge in edges[1..] and not (edges[_i - 1].direction is edge.direction)
+			curve: if edge in edges[1..] and not (edges[_i - 1].direction is edge.direction) then edges[_i - 1].direction else undefined
 		end:
 			x: current.x += Math.round(edge.length * map.multiplier * Math.sin(edge.direction * (Math.PI / 4))),
 			y: current.y += Math.round(edge.length * map.multiplier * -1 * Math.cos(edge.direction * (Math.PI / 4)))) for edge in edges
