@@ -3,7 +3,10 @@
 		{
 			"name" : "Graduate",
 			"color" : "grey",
-			"translate" : "t200,800",
+			"translate" : {
+				"x" : 20,
+				"y" : 1000
+			},
 			"edges" : [
 				{
 					"direction" : 0,
@@ -29,7 +32,10 @@
 		}, {
 			"name" : "Graduate2",
 			"color" : "black",
-			"translate" : "t200,400",
+			"translate" : {
+				"x" : 20,
+				"y" : 300
+			},
 			"edges" : [
 				{
 					"direction" : 0,
