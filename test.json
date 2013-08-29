@@ -1,7 +1,7 @@
 {
 	"routes" : [
 		{
-			"name" : "Graduate",
+			"name" : "test",
 			"color" : "grey",
 			"translate" : {
 				"x" : 20,
@@ -30,7 +30,7 @@
 				}
 			]
 		}, {
-			"name" : "Graduate2",
+			"name" : "test2",
 			"color" : "black",
 			"translate" : {
 				"x" : 20,
