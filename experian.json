@@ -3,53 +3,53 @@
 		{
 			"name" : "Graduate",
 			"color" : "grey",
-			"translate" : "t20,80",
+			"translate" : "t200,800",
 			"edges" : [
 				{
 					"direction" : 0,
-					"length" : 10
+					"length" : 100
 				}, {
 					"direction" : 2,
-					"length" : 80
+					"length" : 800
 				}, {
 					"direction" : 2,
-					"length" : 10
+					"length" : 100
 				}, {
 					"direction" : 1,
-					"length" : 10
+					"length" : 100
 				}, {
 					"follow" : 1,
 					"direction" : 0,
-					"length" : 10
+					"length" : 100
 				}, {
 					"direction" : 1,
-					"length" : 10
+					"length" : 100
 				}
 			]
 		}, {
 			"name" : "Graduate2",
 			"color" : "black",
-			"translate" : "t20,40",
+			"translate" : "t200,400",
 			"edges" : [
 				{
 					"direction" : 0,
-					"length" : 10
+					"length" : 100
 				}, {
 					"direction" : 2,
-					"length" : 45
+					"length" : 450
 				}, {
 					"direction" : 2,
-					"length" : 45
+					"length" : 450
 				}, {
 					"direction" : 1,
-					"length" : 10
+					"length" : 100
 				}, {
 					"follow" : 1,
 					"direction" : 0,
-					"length" : 10
+					"length" : 100
 				}, {
 					"direction" : 2,
-					"length" : 10
+					"length" : 100
 				}
 			]
 		}

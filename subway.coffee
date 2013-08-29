@@ -8,6 +8,7 @@ map =
 $ ->
 	map.height = 100*Math.floor($("#map").height()/100)
 	map.width = 100*Math.floor($("#map").width()/100)
+	map.multiplier = Math.max(map.height, map.width)/1000
 	paper = Raphael("map", map.width+2*map.border, map.height+2*map.border)
 	drawGridLines(paper)
 	$.getJSON(data, (data) ->
@@ -42,21 +43,23 @@ drawGridLines = (paper) ->
 	paper.setFinish().forEach((elem) -> elem.clone().transform(Raphael.format("t{0},0", map.width)))
 	
 drawRoute = (paper, route) ->
+	console.log(getStartEndPoint(route.edges))
 	paper.path(Raphael.fullfill("M{start.x},{start.y}L{end.x},{end.y}", edge)).transform(route.translate) for edge in getStartEndPoint(route.edges)
 	
 drawStation = (paper, station) ->
-	paper.setStart()
-	paper.setFinish()
+	console.log(station)
 	
 getStartEndPoint = (edges) ->
 	current =
 		x: 0
 		y: 0
 		
-	value = (
+	(
 		start: 
 			x: if edge.follow then current.x = _results[edge.follow].end.x else current.x
 			y: if edge.follow then current.y = _results[edge.follow].end.y else current.y
+			curve: edge in edges[1..]
 		end:
 			x: current.x += Math.round(edge.length * Math.sin(edge.direction * (Math.PI / 4))),
-			y: current.y += Math.round(edge.length * -1 * Math.cos(edge.direction * (Math.PI / 4)))) for edge in edges
+			y: current.y += Math.round(edge.length * -1 * Math.cos(edge.direction * (Math.PI / 4)))
+			curve: edge in edges[0...] or edges[_i + 1].follow) for edge in edges
