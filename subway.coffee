@@ -17,15 +17,13 @@ $ ->
 	)
 
 drawGridLines = (paper) ->
-	column_width = Math.min(map.width / map.grid.columns, map.height / map.grid.rows)
-	row_height = Math.min(map.width / map.grid.columns, map.height / map.grid.rows)
-	cell_dimension = Math.min(map.width / map.grid.columns, map.height / map.grid.rows)
+	cell_length = Math.min(map.width / map.grid.columns, map.height / map.grid.rows)
 	
 	#Vertical Lines
-	paper.path(Raphael.format("M{0},{1}l0,{2}", map.border + x*column_width, map.border, cell_dimension*map.grid.rows)).attr("stroke", map.grid.color).attr("stroke-width", map.multiplier*0.25) for x in [1...map.grid.columns]
+	paper.path(Raphael.format("M{0},{1}l0,{2}", map.border + x*cell_length, map.border, cell_length*map.grid.rows)).attr("stroke", map.grid.color).attr("stroke-width", map.multiplier*0.25) for x in [1...map.grid.columns]
 	
 	#Horizontal lines
-	paper.path(Raphael.format("M{1},{0}l{2},0", map.border + x*row_height, map.border, cell_dimension*map.grid.columns)).attr("stroke", map.grid.color).attr("stroke-width", map.multiplier*0.25) for x in [1...map.grid.rows]
+	paper.path(Raphael.format("M{1},{0}l{2},0", map.border + x*cell_length, map.border, cell_length*map.grid.columns)).attr("stroke", map.grid.color).attr("stroke-width", map.multiplier*0.25) for x in [1...map.grid.rows]
 	
 	clearbox =
 		attr:
@@ -36,21 +34,21 @@ drawGridLines = (paper) ->
 	
 	#Numbers along top and bottom
 	paper.setStart()
-	paper.path(Raphael.format("M{0},{0}l{1},0", map.border, cell_dimension*map.grid.columns)).attr("stroke", map.grid.color).attr("stroke-width", map.multiplier*1)
-	paper.rect(map.border+((x-0.5)*column_width)-(clearbox.width/2), map.border-clearbox.height/2,clearbox.width,clearbox.height).attr(clearbox.attr) for x in [0..map.grid.columns]
-	paper.text(map.border+(x-0.5)*column_width, map.border, x).attr("fill",map.grid.color).attr("font-size", map.multiplier*13) for x in [1..map.grid.columns]
-	paper.setFinish().forEach((elem) -> elem.clone().transform(Raphael.format("t0,{0}", cell_dimension*map.grid.rows)))
+	paper.path(Raphael.format("M{0},{0}l{1},0", map.border, cell_length*map.grid.columns)).attr("stroke", map.grid.color).attr("stroke-width", map.multiplier*1)
+	paper.rect(map.border+((x-0.5)*cell_length)-(clearbox.width/2), map.border-clearbox.height/2,clearbox.width,clearbox.height).attr(clearbox.attr) for x in [0..map.grid.columns]
+	paper.text(map.border+(x-0.5)*cell_length, map.border, x).attr("fill",map.grid.color).attr("font-size", map.multiplier*13) for x in [1..map.grid.columns]
+	paper.setFinish().forEach((elem) -> elem.clone().transform(Raphael.format("t0,{0}", cell_length*map.grid.rows)))
 	
 	#Letters down left and right side
 	paper.setStart()
-	paper.path(Raphael.format("M{0},{0}l0,{1}", map.border, cell_dimension*map.grid.rows)).attr("stroke", map.grid.color).attr("stroke-width", map.multiplier*1)
-	paper.rect(map.border-clearbox.width/2, map.border+(x-0.5)*row_height-clearbox.height/2,clearbox.width,clearbox.height).attr(clearbox.attr) for x in [0..map.grid.rows]
-	paper.text(map.border, map.border+(x-0.5)*row_height, String.fromCharCode(x+64)).attr("fill",map.grid.color).attr("font-size", map.multiplier*13) for x in [1..map.grid.rows]
-	paper.setFinish().forEach((elem) -> elem.clone().transform(Raphael.format("t{0},0", cell_dimension*map.grid.columns)))
+	paper.path(Raphael.format("M{0},{0}l0,{1}", map.border, cell_length*map.grid.rows)).attr("stroke", map.grid.color).attr("stroke-width", map.multiplier*1)
+	paper.rect(map.border-clearbox.width/2, map.border+(x-0.5)*cell_length-clearbox.height/2,clearbox.width,clearbox.height).attr(clearbox.attr) for x in [0..map.grid.rows]
+	paper.text(map.border, map.border+(x-0.5)*cell_length, String.fromCharCode(x+64)).attr("fill",map.grid.color).attr("font-size", map.multiplier*13) for x in [1..map.grid.rows]
+	paper.setFinish().forEach((elem) -> elem.clone().transform(Raphael.format("t{0},0", cell_length*map.grid.columns)))
 	
 drawRoute = (paper, route) ->
 	console.log(getStartEndPoint(route.edges))
-	paper.path(Raphael.fullfill("M{start.x},{start.y}L{end.x},{end.y}", edge)).transform(Raphael.format("t{0},{1}", route.translate.x * map.multiplier, route.translate.y * map.multiplier)).attr("stroke-width", map.multiplier*5) for edge in getStartEndPoint(route.edges)
+	paper.path(Raphael.fullfill("M{start.x},{start.y}L{end.x},{end.y}", edge)).transform(Raphael.format("t{0},{1}", route.translate.x * map.multiplier, route.translate.y * map.multiplier)).attr("stroke-width", map.multiplier*10) for edge in getStartEndPoint(route.edges)
 	
 drawStation = (paper, station) ->
 	console.log(station)

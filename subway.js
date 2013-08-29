@@ -37,15 +37,13 @@
   });
 
   drawGridLines = function(paper) {
-    var cell_dimension, clearbox, column_width, row_height, x, _i, _j, _k, _l, _m, _n, _ref, _ref1, _ref2, _ref3, _ref4, _ref5;
-    column_width = Math.min(map.width / map.grid.columns, map.height / map.grid.rows);
-    row_height = Math.min(map.width / map.grid.columns, map.height / map.grid.rows);
-    cell_dimension = Math.min(map.width / map.grid.columns, map.height / map.grid.rows);
+    var cell_length, clearbox, x, _i, _j, _k, _l, _m, _n, _ref, _ref1, _ref2, _ref3, _ref4, _ref5;
+    cell_length = Math.min(map.width / map.grid.columns, map.height / map.grid.rows);
     for (x = _i = 1, _ref = map.grid.columns; 1 <= _ref ? _i < _ref : _i > _ref; x = 1 <= _ref ? ++_i : --_i) {
-      paper.path(Raphael.format("M{0},{1}l0,{2}", map.border + x * column_width, map.border, cell_dimension * map.grid.rows)).attr("stroke", map.grid.color).attr("stroke-width", map.multiplier * 0.25);
+      paper.path(Raphael.format("M{0},{1}l0,{2}", map.border + x * cell_length, map.border, cell_length * map.grid.rows)).attr("stroke", map.grid.color).attr("stroke-width", map.multiplier * 0.25);
     }
     for (x = _j = 1, _ref1 = map.grid.rows; 1 <= _ref1 ? _j < _ref1 : _j > _ref1; x = 1 <= _ref1 ? ++_j : --_j) {
-      paper.path(Raphael.format("M{1},{0}l{2},0", map.border + x * row_height, map.border, cell_dimension * map.grid.columns)).attr("stroke", map.grid.color).attr("stroke-width", map.multiplier * 0.25);
+      paper.path(Raphael.format("M{1},{0}l{2},0", map.border + x * cell_length, map.border, cell_length * map.grid.columns)).attr("stroke", map.grid.color).attr("stroke-width", map.multiplier * 0.25);
     }
     clearbox = {
       attr: {
@@ -56,26 +54,26 @@
       width: map.multiplier * 8
     };
     paper.setStart();
-    paper.path(Raphael.format("M{0},{0}l{1},0", map.border, cell_dimension * map.grid.columns)).attr("stroke", map.grid.color).attr("stroke-width", map.multiplier * 1);
+    paper.path(Raphael.format("M{0},{0}l{1},0", map.border, cell_length * map.grid.columns)).attr("stroke", map.grid.color).attr("stroke-width", map.multiplier * 1);
     for (x = _k = 0, _ref2 = map.grid.columns; 0 <= _ref2 ? _k <= _ref2 : _k >= _ref2; x = 0 <= _ref2 ? ++_k : --_k) {
-      paper.rect(map.border + ((x - 0.5) * column_width) - (clearbox.width / 2), map.border - clearbox.height / 2, clearbox.width, clearbox.height).attr(clearbox.attr);
+      paper.rect(map.border + ((x - 0.5) * cell_length) - (clearbox.width / 2), map.border - clearbox.height / 2, clearbox.width, clearbox.height).attr(clearbox.attr);
     }
     for (x = _l = 1, _ref3 = map.grid.columns; 1 <= _ref3 ? _l <= _ref3 : _l >= _ref3; x = 1 <= _ref3 ? ++_l : --_l) {
-      paper.text(map.border + (x - 0.5) * column_width, map.border, x).attr("fill", map.grid.color).attr("font-size", map.multiplier * 13);
+      paper.text(map.border + (x - 0.5) * cell_length, map.border, x).attr("fill", map.grid.color).attr("font-size", map.multiplier * 13);
     }
     paper.setFinish().forEach(function(elem) {
-      return elem.clone().transform(Raphael.format("t0,{0}", cell_dimension * map.grid.rows));
+      return elem.clone().transform(Raphael.format("t0,{0}", cell_length * map.grid.rows));
     });
     paper.setStart();
-    paper.path(Raphael.format("M{0},{0}l0,{1}", map.border, cell_dimension * map.grid.rows)).attr("stroke", map.grid.color).attr("stroke-width", map.multiplier * 1);
+    paper.path(Raphael.format("M{0},{0}l0,{1}", map.border, cell_length * map.grid.rows)).attr("stroke", map.grid.color).attr("stroke-width", map.multiplier * 1);
     for (x = _m = 0, _ref4 = map.grid.rows; 0 <= _ref4 ? _m <= _ref4 : _m >= _ref4; x = 0 <= _ref4 ? ++_m : --_m) {
-      paper.rect(map.border - clearbox.width / 2, map.border + (x - 0.5) * row_height - clearbox.height / 2, clearbox.width, clearbox.height).attr(clearbox.attr);
+      paper.rect(map.border - clearbox.width / 2, map.border + (x - 0.5) * cell_length - clearbox.height / 2, clearbox.width, clearbox.height).attr(clearbox.attr);
     }
     for (x = _n = 1, _ref5 = map.grid.rows; 1 <= _ref5 ? _n <= _ref5 : _n >= _ref5; x = 1 <= _ref5 ? ++_n : --_n) {
-      paper.text(map.border, map.border + (x - 0.5) * row_height, String.fromCharCode(x + 64)).attr("fill", map.grid.color).attr("font-size", map.multiplier * 13);
+      paper.text(map.border, map.border + (x - 0.5) * cell_length, String.fromCharCode(x + 64)).attr("fill", map.grid.color).attr("font-size", map.multiplier * 13);
     }
     return paper.setFinish().forEach(function(elem) {
-      return elem.clone().transform(Raphael.format("t{0},0", cell_dimension * map.grid.columns));
+      return elem.clone().transform(Raphael.format("t{0},0", cell_length * map.grid.columns));
     });
   };
 
@@ -86,7 +84,7 @@
     _results = [];
     for (_i = 0, _len = _ref.length; _i < _len; _i++) {
       edge = _ref[_i];
-      _results.push(paper.path(Raphael.fullfill("M{start.x},{start.y}L{end.x},{end.y}", edge)).transform(Raphael.format("t{0},{1}", route.translate.x * map.multiplier, route.translate.y * map.multiplier)).attr("stroke-width", map.multiplier * 5));
+      _results.push(paper.path(Raphael.fullfill("M{start.x},{start.y}L{end.x},{end.y}", edge)).transform(Raphael.format("t{0},{1}", route.translate.x * map.multiplier, route.translate.y * map.multiplier)).attr("stroke-width", map.multiplier * 10));
     }
     return _results;
   };
