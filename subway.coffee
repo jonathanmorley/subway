@@ -19,11 +19,8 @@ $ ->
 drawGridLines = (paper) ->
 	cell_length = Math.min(map.width / map.grid.columns, map.height / map.grid.rows)
 	
-	#Vertical Lines
-	paper.path(Raphael.format("M{0},{1}l0,{2}", map.border + x*cell_length, map.border, cell_length*map.grid.rows)).attr("stroke", map.grid.color).attr("stroke-width", map.multiplier*0.25) for x in [1...map.grid.columns]
-	
-	#Horizontal lines
-	paper.path(Raphael.format("M{1},{0}l{2},0", map.border + x*cell_length, map.border, cell_length*map.grid.columns)).attr("stroke", map.grid.color).attr("stroke-width", map.multiplier*0.25) for x in [1...map.grid.rows]
+	drawHorizontalLine(paper, map.border + i*cell_length, 0.25, cell_length) for i in [1...map.grid.rows]
+	drawVerticalLine(paper, map.border + i*cell_length, 0.25, cell_length) for i in [1...map.grid.columns]
 	
 	clearbox =
 		attr:
@@ -31,6 +28,9 @@ drawGridLines = (paper) ->
 			fill: "white"
 		height: map.multiplier*12
 		width: map.multiplier*8
+	
+	drawHorizontalLabel(paper, map.border + (i-0.5)*cell_length, clearbox) for i in [0..map.grid.columns]
+	drawVerticalLabel(paper, map.border + (i-0.5)*cell_length, clearbox) for i in [0..map.grid.rows]
 	
 	#Numbers along top and bottom
 	paper.setStart()
@@ -45,6 +45,36 @@ drawGridLines = (paper) ->
 	paper.rect(map.border-clearbox.width/2, map.border+(x-0.5)*cell_length-clearbox.height/2,clearbox.width,clearbox.height).attr(clearbox.attr) for x in [0..map.grid.rows]
 	paper.text(map.border, map.border+(x-0.5)*cell_length, String.fromCharCode(x+64)).attr("fill",map.grid.color).attr("font-size", map.multiplier*13) for x in [1..map.grid.rows]
 	paper.setFinish().forEach((elem) -> elem.clone().transform(Raphael.format("t{0},0", cell_length*map.grid.columns)))
+	
+drawHorizontalLine = (paper, position, width, cell_length) ->
+	paper
+		.path(Raphael.format("M{0},{1}l{2},0", map.border, position, cell_length*map.grid.columns))
+		.attr("stroke", map.grid.color)
+		.attr("stroke-width", map.multiplier*width)
+		
+drawVerticalLine = (paper, position, width, cell_length) ->
+	paper
+		.path(Raphael.format("M{0},{1}l0,{2}", position, map.border, cell_length*map.grid.rows))
+		.attr("stroke", map.grid.color)
+		.attr("stroke-width", map.multiplier*width)
+		
+drawHorizontalLabel = (paper, position, clearbox) ->
+	paper
+		.rect(position-clearbox.width/2, map.border-clearbox.height/2,clearbox.width,clearbox.height)
+		.attr(clearbox.attr)
+	paper
+		.text(position, map.border, x)
+		.attr("fill",map.grid.color)
+		.attr("font-size", map.multiplier*13)
+		
+drawVerticalLabel = (paper, position, clearbox) ->
+	paper
+		.rect(map.border-clearbox.width/2, position-clearbox.height/2,clearbox.width,clearbox.height)
+		.attr(clearbox.attr)
+	paper
+		.text(map.border, position, String.fromCharCode(x+64))
+		.attr("fill",map.grid.color)
+		.attr("font-size", map.multiplier*13)
 	
 drawRoute = (paper, route) ->
 	route.translate[key] = value * map.multiplier for key,value of route.translate
