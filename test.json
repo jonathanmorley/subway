@@ -7,7 +7,7 @@
 				"x" : 20,
 				"y" : 1000
 			},
-			"edges" : [
+			"vectors" : [
 				{
 					"direction" : 0,
 					"length" : 100
@@ -36,7 +36,7 @@
 				"x" : 20,
 				"y" : 300
 			},
-			"edges" : [
+			"vectors" : [
 				{
 					"direction" : 0,
 					"length" : 100
