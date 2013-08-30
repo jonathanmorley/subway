@@ -10,7 +10,7 @@
       color: "#00B3EF"
     },
     border: 10,
-    base_radius: 5
+    base_radius: 15
   };
 
   $(function() {
@@ -140,14 +140,12 @@
       edge = edges[index];
       _results.push(values = {
         start: {
-          x: Math.round(edge.follow ? current.x = _results[edge.follow].end.x : current.x),
-          y: Math.round(edge.follow ? current.y = _results[edge.follow].end.y : current.y),
-          curve: __indexOf.call(edges.slice(1), edge) >= 0 && edges[index - 1].direction !== edge.direction
+          x: (edge.follow ? current.x = _results[edge.follow].end.x : current.x) + (__indexOf.call(edges.slice(1), edge) >= 0 && edges[index - 1].direction !== edge.direction ? Math.round(map.base_radius * map.multiplier * Math.sin(edge.direction * (Math.PI / 4))) : 0),
+          y: (edge.follow ? current.y = _results[edge.follow].end.y : current.y) + (__indexOf.call(edges.slice(1), edge) >= 0 && edges[index - 1].direction !== edge.direction ? Math.round(map.base_radius * map.multiplier * -Math.cos(edge.direction * (Math.PI / 4))) : 0)
         },
         end: {
-          x: current.x += Math.round(edge.length * map.multiplier * Math.sin(edge.direction * (Math.PI / 4))),
-          y: current.y += Math.round(edge.length * map.multiplier * -Math.cos(edge.direction * (Math.PI / 4))),
-          curve: __indexOf.call(edges.slice(0, -1), edge) >= 0 && (edges[index + 1].follow == null) && edges[index + 1].direction !== edge.direction
+          x: (current.x += Math.round(edge.length * map.multiplier * Math.sin(edge.direction * (Math.PI / 4)))) - (__indexOf.call(edges.slice(0, -1), edge) >= 0 && (edges[index + 1].follow == null) && edges[index + 1].direction !== edge.direction ? Math.round(map.base_radius * map.multiplier * Math.sin(edge.direction * (Math.PI / 4))) : 0),
+          y: (current.y += Math.round(edge.length * map.multiplier * -Math.cos(edge.direction * (Math.PI / 4)))) - (__indexOf.call(edges.slice(0, -1), edge) >= 0 && (edges[index + 1].follow == null) && edges[index + 1].direction !== edge.direction ? Math.round(map.base_radius * map.multiplier * -Math.cos(edge.direction * (Math.PI / 4))) : 0)
         }
       });
     }

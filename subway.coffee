@@ -4,7 +4,7 @@ map =
 		columns: 9
 		color: "#00B3EF"
 	border: 10
-	base_radius: 5
+	base_radius: 15
 	
 
 $ ->
@@ -80,7 +80,8 @@ drawSolidEdge = (paper, edge) ->
 	
 drawStation = (paper, station) ->
 	console.log(station)
-	
+
+# Very messy
 getStartEndPoint = (edges) ->
 	current =
 		x: 0
@@ -88,10 +89,11 @@ getStartEndPoint = (edges) ->
 	
 	values = (
 		start: 
-			x: Math.round if edge.follow then current.x = _results[edge.follow].end.x else current.x
-			y: Math.round if edge.follow then current.y = _results[edge.follow].end.y else current.y
-			curve: edge in edges[1..] and edges[index - 1].direction isnt edge.direction
+			x: (if edge.follow then current.x = _results[edge.follow].end.x else current.x) + (if edge in edges[1..] and edges[index - 1].direction isnt edge.direction then Math.round(map.base_radius * map.multiplier * Math.sin(edge.direction * (Math.PI / 4))) else 0)
+			y: (if edge.follow then current.y = _results[edge.follow].end.y else current.y) + (if edge in edges[1..] and edges[index - 1].direction isnt edge.direction then Math.round(map.base_radius * map.multiplier * -Math.cos(edge.direction * (Math.PI / 4))) else 0)
 		end:
-			x: current.x += Math.round(edge.length * map.multiplier * Math.sin(edge.direction * (Math.PI / 4))),
-			y: current.y += Math.round(edge.length * map.multiplier * -Math.cos(edge.direction * (Math.PI / 4)))
-			curve: edge in edges[0...-1] and not edges[index + 1].follow? and edges[index + 1].direction isnt edge.direction) for edge,index in edges
+			x: (current.x += Math.round(edge.length * map.multiplier * Math.sin(edge.direction * (Math.PI / 4)))) - (if edge in edges[0...-1] and not edges[index + 1].follow? and edges[index + 1].direction isnt edge.direction then Math.round(map.base_radius * map.multiplier * Math.sin(edge.direction * (Math.PI / 4))) else 0)
+			y: (current.y += Math.round(edge.length * map.multiplier * -Math.cos(edge.direction * (Math.PI / 4)))) - (if edge in edges[0...-1] and not edges[index + 1].follow? and edges[index + 1].direction isnt edge.direction then Math.round(map.base_radius * map.multiplier * -Math.cos(edge.direction * (Math.PI / 4))) else 0)) for edge,index in edges
+
+
+	
