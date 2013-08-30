@@ -70,7 +70,7 @@ drawRoute = (paper, route) ->
 	route.translate[key] = value * map.multiplier for key,value of route.translate
 	curved_edges = getCurvedEdges(route.vectors)
 	full_edges = getFullEdges(route.vectors)
-	curves = getCurves(curved_edges, full_edges)
+	curves = getCurves(curved_edges, full_edges, route.vectors)
 	console.log(curves)
 	drawSolidEdge(paper, edge)
 		.transform(Raphael.fullfill("t{x},{y}", route.translate)) for edge in curved_edges
@@ -84,7 +84,7 @@ drawSolidEdge = (paper, edge) ->
 		
 drawSolidCurve = (paper, curve) ->
 	paper
-		.path(Raphael.fullfill("M{start.x},{start.y}S{end.x},{end.y},{control.x},{control.y}", curve))
+		.path(Raphael.fullfill("M{start.x},{start.y}S{control.x},{control.y},{end.x},{end.y}", curve))
 		.attr("stroke-width", map.multiplier*10)
 	
 drawStation = (paper, station) ->
@@ -117,8 +117,8 @@ getCurvedEdges = (vectors) ->
 			x: (current.x += Math.round(vector.length * map.multiplier * Math.sin(vector.direction * (Math.PI / 4)))) - (if vector in vectors[0...-1] and not vectors[index + 1].follow? and vectors[index + 1].direction isnt vector.direction then Math.round(map.base_radius * map.multiplier * Math.sin(vector.direction * (Math.PI / 4))) else 0)
 			y: (current.y += Math.round(vector.length * map.multiplier * -Math.cos(vector.direction * (Math.PI / 4)))) - (if vector in vectors[0...-1] and not vectors[index + 1].follow? and vectors[index + 1].direction isnt vector.direction then Math.round(map.base_radius * map.multiplier * -Math.cos(vector.direction * (Math.PI / 4))) else 0)) for vector,index in vectors
 
-getCurves = (curved_edges, full_edges) ->
+getCurves = (curved_edges, full_edges, vectors) ->
 	curves = (
-		start: edge.end
+		start: if vectors[index + 1].follow? then curved_edges[vectors[index + 1].follow].end else edge.end
 		end: curved_edges[index + 1].start
-		control: full_edges[index].end) for edge,index in curved_edges[...-1] when edge.end isnt curved_edges[index + 1].start
+		control: if vectors[index + 1].follow? then full_edges[vectors[index + 1].follow].end else full_edges[index].end) for edge,index in curved_edges[...-1] when edge.end isnt curved_edges[index + 1].start

@@ -115,7 +115,7 @@
     }
     curved_edges = getCurvedEdges(route.vectors);
     full_edges = getFullEdges(route.vectors);
-    curves = getCurves(curved_edges, full_edges);
+    curves = getCurves(curved_edges, full_edges, route.vectors);
     console.log(curves);
     for (_i = 0, _len = curved_edges.length; _i < _len; _i++) {
       edge = curved_edges[_i];
@@ -187,7 +187,7 @@
     return _results;
   };
 
-  getCurves = function(curved_edges, full_edges) {
+  getCurves = function(curved_edges, full_edges, vectors) {
     var curves, edge, index, _i, _len, _ref, _results;
     _ref = curved_edges.slice(0, -1);
     _results = [];
@@ -195,9 +195,9 @@
       edge = _ref[index];
       if (edge.end !== curved_edges[index + 1].start) {
         _results.push(curves = {
-          start: edge.end,
+          start: vectors[index + 1].follow != null ? curved_edges[vectors[index + 1].follow].end : edge.end,
           end: curved_edges[index + 1].start,
-          control: full_edges[index].end
+          control: vectors[index + 1].follow != null ? full_edges[vectors[index + 1].follow].end : full_edges[index].end
         });
       }
     }
