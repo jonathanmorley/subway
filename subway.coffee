@@ -121,4 +121,4 @@ getCurves = (curved_edges, full_edges, vectors) ->
 	curves = (
 		start: if vectors[index + 1].follow? then curved_edges[vectors[index + 1].follow].end else edge.end
 		end: curved_edges[index + 1].start
-		control: if vectors[index + 1].follow? then full_edges[vectors[index + 1].follow].end else full_edges[index].end) for edge,index in curved_edges[...-1] when edge.end isnt curved_edges[index + 1].start
+		control: if vectors[index + 1].follow? then full_edges[vectors[index + 1].follow].end else full_edges[index].end) for edge,index in curved_edges[...-1] when not _.isEqual(edge.end, curved_edges[index + 1].start)

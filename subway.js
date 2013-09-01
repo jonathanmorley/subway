@@ -193,7 +193,7 @@
     _results = [];
     for (index = _i = 0, _len = _ref.length; _i < _len; index = ++_i) {
       edge = _ref[index];
-      if (edge.end !== curved_edges[index + 1].start) {
+      if (!_.isEqual(edge.end, curved_edges[index + 1].start)) {
         _results.push(curves = {
           start: vectors[index + 1].follow != null ? curved_edges[vectors[index + 1].follow].end : edge.end,
           end: curved_edges[index + 1].start,
